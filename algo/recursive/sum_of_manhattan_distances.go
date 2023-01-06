@@ -1,20 +1,17 @@
+// 曼哈顿距离：坐标系中两个点的直线距离
+// 给定n个坐标点，求两两坐标系之间的曼哈顿距离之和
 
 package main
 
 import (
 	"fmt"
-	_ "gf-test/internal/packed"
 	"sort"
 )
 
 func main() {
 	//cmd.Main.Run(gctx.New())
-	var array = [][]int{{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}, {4, -2}}
-	//var array = [][]int{{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}}
-	//var array = [2]int{1}
+	var array = [][]int{{1, 1}, {3, 3}, {6, 6}, {7, 7}, {9, 9}, {12, 12}}
 	fmt.Println(enumerate(&array))
-
-	//array = [][]int{{2, 2}, {1, 1}, {3, 3}, {4, 4}, {5, 5}}
 	fmt.Println(smart(&array))
 }
 
@@ -32,17 +29,18 @@ func cal(array *[]int) int {
 	sort.Ints(*array)
 	var res, sum = 0, 0
 	for i := 0; i < len(*array); i++ {
-		res += (*array)[i] * i - sum
+		res += (*array)[i]*i - sum
 		sum += (*array)[i]
 	}
 	return res
 }
 
+// 枚举 时间复杂度O(M*N)
 func enumerate(array *[][]int) int {
 	var total = 0
 	for i := 1; i < len(*array); i++ {
 		for j := 0; j < i; j++ {
-			total += abs((*array)[i][0] - (*array)[j][0]) + abs((*array)[i][1] - (*array)[j][1])
+			total += abs((*array)[i][0]-(*array)[j][0]) + abs((*array)[i][1]-(*array)[j][1])
 		}
 	}
 	return total
@@ -54,4 +52,3 @@ func abs(a int) int {
 	}
 	return a
 }
-
