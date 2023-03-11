@@ -1,19 +1,12 @@
 // 曼哈顿距离：坐标系中两个点的直线距离
 // 给定n个坐标点，求两两坐标系之间的曼哈顿距离之和
 
-package main
+package recursive
 
 import (
-	"fmt"
 	"math"
 	"sort"
 )
-
-func main() {
-	var array = [][]int{{1, 1}, {3, 3}, {6, 6}, {7, 7}, {9, 9}, {12, 12}}
-	fmt.Println(enumerate(&array))
-	fmt.Println(smart(&array))
-}
 
 func smart(array *[][]int) int {
 	var x = make([]int, len(*array))
