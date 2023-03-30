@@ -97,3 +97,43 @@ func FindAnagrams(s string, p string) []int {
 	}
 	return ret
 }
+
+// BalancedString 力扣 1234、替换子串得到平衡字符串
+// 有一个只含有'Q', 'W', 'E', 'R'四种字符，且长度为 n 的字符串，n是4的倍数
+// 假如在该字符串中，这四个字符都恰好出现n/4次，那么它就是一个「平衡字符串」
+// 给你一个这样的字符串 s，请通过「替换一个子串」的方式，使原字符串 s 变成一个「平衡字符串」。
+// 你可以用和「待替换子串」长度相同的任何其他字符串来完成替换。
+// 请返回待替换子串的最小可能长度
+func BalancedString(s string) int {
+	m := map[byte]int{}
+	for _, val := range s {
+		m[byte(val)]++
+	}
+	avgCnt := len(s) / 4
+	if checkBalance(&m, avgCnt) {
+		return 0
+	}
+
+	l, r, min := 0, 0, len(s)
+	for r < len(s) {
+		m[s[r]]--
+		r++
+		for l < r && checkBalance(&m, avgCnt) {
+			if r-l < min {
+				min = r - l
+			}
+			m[s[l]]++
+			l++
+		}
+	}
+	return min
+}
+
+func checkBalance(m *map[byte]int, avg int) bool {
+	for _, val := range *m {
+		if val > avg {
+			return false
+		}
+	}
+	return true
+}
