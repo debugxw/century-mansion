@@ -1,2 +1,5 @@
 # mac 桌面文件
 *.DS_Store
+
+# idea
+*.idea
