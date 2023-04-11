@@ -1,6 +1,8 @@
-package dp
+package stack
 
-import "algo/utils"
+import (
+	"algo/utils"
+)
 
 // 力扣 42、接雨水
 // 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水
@@ -29,8 +31,8 @@ func trapWithPointers(height []int) int {
 	left, right, leftMax, rightMax := 0, len(height)-1, 0, 0
 	sum := 0
 	for left < right {
-		leftMax = maxInt(leftMax, height[left])
-		rightMax = maxInt(rightMax, height[right])
+		leftMax = utils.MaxInt(leftMax, height[left])
+		rightMax = utils.MaxInt(rightMax, height[right])
 		if leftMax < rightMax {
 			sum += leftMax - height[left]
 			left++
