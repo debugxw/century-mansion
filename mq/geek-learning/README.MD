@@ -27,7 +27,7 @@
    + 把三个写操作变为一个写操作，并且所有的写操作通过一个线程来执行
 2. <font color=red>批量读</font>
    + 耗时：1.8s
-   + communication_reduce_read.go
+   + communication_batch_read.go
    + 把多次读一个变为一次多多个
 3. <font color=red>批量写</font>
    + 370ms
