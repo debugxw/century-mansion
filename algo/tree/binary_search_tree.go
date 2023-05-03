@@ -34,3 +34,23 @@ func isValidBST(root *Node) bool {
 	}
 	return true
 }
+
+// 思路非常不错
+// 力扣 538、将二叉搜索树转换为累加树
+// 给出二叉 搜索 树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree）
+// 使每个节点 node 的新值等于原树中大于或等于 node.val 的值之和
+func convertBST(root *Node) *Node {
+	sum := 0
+	var dfs func(root *Node)
+	dfs = func(root *Node) {
+		if root != nil {
+			// 反序遍历的思路很好
+			dfs(root.Right)
+			sum += root.Val
+			root.Val = sum
+			dfs(root.Left)
+		}
+	}
+	dfs(root)
+	return root
+}
